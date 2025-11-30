@@ -1,0 +1,73 @@
+1. Launch EC2 Instance
+
+Launched a t2.micro instance (Free Tier).
+
+Installed webserver / configured environment.
+
+Verified it runs properly.
+
+2. Create AMI
+
+Created an AMI from the EC2 instance to preserve configuration.
+
+AMI is used as the base image for scaling.
+
+3. Create Launch Template
+
+Used the AMI as the template image.
+
+Configured instance type, security group, user data if needed.
+
+4. Create Target Group
+
+Target type: Instances.
+
+Health check: HTTP on port 80.
+
+Will attach EC2 instances created by ASG.
+
+5. Create Application Load Balancer (ALB)
+
+Chose Application Load Balancer.
+
+Attached the Target Group.
+
+ALB distributes traffic across instances.
+
+6. Create Auto Scaling Group (ASG)
+
+Connected ASG to Launch Template + Target Group.
+
+Set capacity: min = 1, desired = 1, max = 2.
+
+ASG automatically launches new instances when CPU is high.
+
+7. Create CloudWatch Alarm
+
+Metric: CPUUtilization of ASG instances.
+
+Threshold example: > 70% for 2 minutes.
+
+Action: Trigger SNS notification.
+
+8. Create SNS Topic
+
+Created an SNS Email Topic.
+
+Subscribed using email → confirmed subscription.
+
+CloudWatch alarm triggers this SNS topic.
+
+9. Trigger Scaling
+
+Used stress or CPU load to increase usage.
+
+Observed CloudWatch spike, ASG launching new instance.
+
+Received SNS email alert.
+
+10. Test & Cleanup
+
+Tested ALB DNS, observed traffic distribution.
+
+Deleted AMI, snapshots, ASG, ALB after testing.
