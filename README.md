@@ -4,17 +4,15 @@
 This project uses EC2 with a Load Balancer and Auto Scaling Group monitored through CloudWatch. When CPU utilization exceeds a threshold, CloudWatch triggers an SNS topic to send an email alert. The setup demonstrates automated monitoring, scaling, and alerting using AWS Free Tier services.
 
 ## Technologies Used
-Amazon EC2 – for hosting the base instance and creating the AMI
-Amazon AMI – used to launch identical instances through the Launch Template
-Launch Template – defines instance configuration for the ASG
-Application Load Balancer (ALB) – distributes traffic across instances
-Target Group – health checks and routing for ALB
-Auto Scaling Group (ASG) – automatically scales instances based on CPU load
-Amazon CloudWatch – monitors CPU metrics and triggers alarms
-SNS (Simple Notification Service) – sends email alerts based on CloudWatch alarms
-VPC + Subnets (default) – for networking components used by ALB and ASG
-Security Groups – to allow HTTP access and control instance traffic
-AWS Free Tier Resources – used throughout to keep cost at zero
+Amazon EC2,AMI
+,Launch Template,
+Load Balancer (ALB),
+Target Group,
+Auto Scaling Group (ASG),
+CloudWatch,
+SNS,
+Security Groups,
+VPC (default)
 
 ## Architecture
  
@@ -131,4 +129,5 @@ Received SNS email alert.
 
 Tested ALB DNS, observed traffic distribution.
 Deleted AMI, snapshots, ASG, ALB after testing.
+
 
